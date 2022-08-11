@@ -21,7 +21,7 @@ static int gpio_switch = 16;
 bool switch_state = true;
 
 //The framework provides some standard device types like switch, lightbulb, fan, temperaturesensor.
-static Switch my_switch("Switch", &gpio_switch);
+static Switch my_switch;
 
 void sysProvEvent(arduino_event_t *sys_event)
 {
@@ -55,6 +55,7 @@ void write_callback(Device *device, Param *param, const param_val_t val, void *p
 void setup()
 {
     Serial.begin(115200);
+    my_switch = Switch("Switch", &gpio_switch);
     pinMode(gpio_0, INPUT);
     pinMode(gpio_switch, OUTPUT);
     digitalWrite(gpio_switch, DEFAULT_POWER_MODE);
